@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const dictionary = require('./javascripts/dictionary');
+const buildCombinations = require('./helpers/combinationBuilder');
 
 const app = express();
 
@@ -9,8 +11,8 @@ app.use(cors({
 }));
 
 app.get('/:id', (req, res, next) => {
-    console.log(req.params);
-    res.send("hello");
+    const combinations = (buildCombinations(req.params.id));
+    console.log(combinations)
 })
 
 app.listen(5000, () => console.log("Listening on port 5000"))
