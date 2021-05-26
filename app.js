@@ -12,7 +12,7 @@ app.use(cors({
 
 app.get('/:id', (req, res, next) => {
     const combinations = (buildCombinations(req.params.id));
-    console.log(combinations)
+    res.send(combinations)
 })
 
 app.listen(5000, () => console.log("Listening on port 5000"))
