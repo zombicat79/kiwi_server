@@ -19,9 +19,9 @@ app.use(cors({
 app.get('/favorites/:input', (req, res, next) => {
     const { input } = req.params;
     const formattedInput = input.toString().slice(0, input.length - 1);
-    if (frequentWords[formattedInput.length]) {
+    if (frequentWords[formattedInput.length].length !== 0) {
         randomFavorite = Math.floor(Math.random() * formattedInput.length);
-        if (formattedInput.length > 1) {
+        if (frequentWords[formattedInput.length].length > 1) {
             res.send(frequentWords[formattedInput.length][randomFavorite]);
         }
         else {
@@ -44,7 +44,7 @@ app.get('/:input', (req, res, next) => {
                 }
             });
         })
-        .catch((err) => err)
+        .catch((err) => (err))
     }
 })
 

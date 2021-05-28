@@ -38,7 +38,7 @@ const buildCombinations = (keyboardInput) => {
             return potentialWords;
         }
     }
-    return potentialWords;
+    return potentialWords.sort((a, b) => a - b);
 }
 
 module.exports = buildCombinations;
