@@ -13,10 +13,10 @@ const app = express();
 
 app.use(cors({
     credentials: true,
-    origin: ['http://localhost:3000']
+    origin: ["https://zombiecat.dev/"]
 }));
 
-app.get('/favorites/:input', (req, res, next) => {
+app.get('/kiwiphone/favorites/:input', (req, res, next) => {
     const { input } = req.params;
     const formattedInput = input.toString().slice(0, input.length - 1);
     if (frequentWords[formattedInput.length].length !== 0) {
@@ -33,7 +33,7 @@ app.get('/favorites/:input', (req, res, next) => {
     }
 })
 
-app.get('/:input', (req, res, next) => {
+app.get('/kiwiphone/:input', (req, res, next) => {
     const combinations = (buildCombinations(req.params.input));
     for (let i = 0; i < combinations.length; i++) {
         axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en_US/${combinations[i]}`)
@@ -48,7 +48,7 @@ app.get('/:input', (req, res, next) => {
     }
 })
 
-app.post('/:word', (req, res, next) => {
+app.post('kiwiphone/:word', (req, res, next) => {
     const wordEntry = req.params.word;
     if (frequentWords[wordEntry.length] === undefined) {
         frequentWords[wordEntry.length] = [wordEntry];
@@ -59,4 +59,4 @@ app.post('/:word', (req, res, next) => {
     }
 })
 
-app.listen(5000, () => console.log("Listening on port 5000"))
+app.listen(3000, () => console.log("Listening on port 3000"))
